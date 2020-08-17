@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>SimonTheGame</title>
+  </head>
+  <body>
+    <div class="" id="app">
+      <h2 class="title">{{title}}</h2>
+      <h3 class="round">Раунд {{round}}</h3>
+      <div class="game">
+        <button id="elem" class="game__start" v-on:click="startGame">start</button>
+        <div class="game-field">
+          <button
+            class="game__btn"
+            value="1"
+            :class="{btn_act: (currentLightBtn === 1)}"
+            v-on:click="checkBtn(1)"
+          > 
+          </button>
+          <button
+            class="game__btn"
+            value="2"
+            :class="{btn_act: (currentLightBtn === 2)}"
+            v-on:click="checkBtn(2)"
+          >
+          </button>
+          <div class="game__break"></div>
+          <button
+            class="game__btn"
+            value="3"
+            :class="{btn_act: (currentLightBtn === 3)}"
+            v-on:click="checkBtn(3)"
+          > 
+          </button>
+          <button
+            class="game__btn"
+            value="4"
+            :class="{btn_act: (currentLightBtn === 4)}"
+            v-on:click="checkBtn(4)"
+          > 
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var startGame = [];
+      var j = 1; //first lvl
+      var indexStartGame = 0;
+
+      var indexCheckGame = 0;
+      var clockCheckGame = 1;
+
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Simon The Game",
+          currentLightBtn: "",
+          round: 1,
+        },
+        methods: {
+          startGame: function (event) {
+            indexStartGame = 0;
+            clockCheckGame = 1;
+            indexCheckGame = 0;
+            let btns = document.querySelectorAll(".game__btn");
+
+            for (let i = 0; i < j; i++) {
+              startGame[i] = Math.floor(Math.random() * 4) + 1;
+            }
+            var intervalId = setInterval(() => {
+              if (indexStartGame > j) {
+                clearInterval(intervalId);
+              } else {
+                this.currentLightBtn = startGame[indexStartGame];
+                indexStartGame++;
+              }
+            }, 1000);
+          },
+          checkBtn: function (x) {
+            this.currentLightBtn = x;
+
+            if (x != startGame[indexCheckGame]) {
+              alert("You luse!");
+              this.currentLightBtn = "";
+              this.round = 1;
+            } else {
+              if (clockCheckGame == startGame.length) {
+                this.currentLightBtn = "";
+                this.round += 1;
+                startGame = [];
+                j++;
+                let event = new Event('click');
+                elem.dispatchEvent(event);
+              } else{
+                indexCheckGame++;
+                clockCheckGame++;
+              } 
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+$btnSize: 60px
+@mixin flex()
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+#app
+    margin: 0
+    padding: 0
+    @include flex()
+.btn_off
+    background: red
+.game__start
+    cursor: pointer
+    margin-bottom: 50px
+    color: #fff
+    background: green
+    border: none
+    border-radius: 4px
+    padding: 10px 50px
+    transition: 0.4s
+    outline: none
+.game__start:hover
+    background: rgb(0, 226, 0)
+.game
+    @include flex()
+.game__btn
+    outline: none
+    width: $btnSize
+    height: $btnSize
+    border: none
+    padding: 0
+    margin: 0
+    background: rgb(254, 181, 100)
+    cursor: pointer
+.game__btn:nth-child(1)
+    border-radius: 90px 10px 10px 10px
+.game__btn:nth-child(2)
+    border-radius: 10px 90px 10px 10px 
+.game__btn:nth-child(4)
+    border-radius: 10px 10px 10px 90px
+.game__btn:nth-child(5)
+    border-radius: 10px 10px 90px 10px
+.btn_act
+    background: green
