@@ -1,4 +1,4 @@
-$btnSize: 60px
+$btnSize: 80px
 @mixin flex()
     display: flex
     flex-direction: column
@@ -8,8 +8,15 @@ $btnSize: 60px
     margin: 0
     padding: 0
     @include flex()
-.btn_off
-    background: red
+.difficulty_off
+    pointer-events: none
+.game-field
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    justify-content: center
+    .game__break
+        flex-basis: 100%
 .game__start
     cursor: pointer
     margin-bottom: 50px
@@ -33,6 +40,8 @@ $btnSize: 60px
     margin: 0
     background: rgb(254, 181, 100)
     cursor: pointer
+    opacity: 0.5
+    margin: 1px
 .game__btn:nth-child(1)
     border-radius: 90px 10px 10px 10px
 .game__btn:nth-child(2)
@@ -41,5 +50,15 @@ $btnSize: 60px
     border-radius: 10px 10px 10px 90px
 .game__btn:nth-child(5)
     border-radius: 10px 10px 90px 10px
+.game__btn_blue
+    background: dodgerblue
+.game__btn_green
+    background: #BEDE15
+.game__btn_yellow
+    background: #FEEF33
+.game__btn_red
+    background: #FF5643
+
 .btn_act
-    background: green
+    border: 2px solid grey
+    opacity: 1

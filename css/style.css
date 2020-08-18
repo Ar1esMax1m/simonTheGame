@@ -7,8 +7,18 @@
   align-items: center;
 }
 
-.btn_off {
-  background: red;
+.difficulty_off {
+  pointer-events: none;
+}
+
+.game-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.game-field .game__break {
+  flex-basis: 100%;
 }
 
 .game__start {
@@ -36,13 +46,15 @@
 
 .game__btn {
   outline: none;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border: none;
   padding: 0;
   margin: 0;
   background: #feb564;
   cursor: pointer;
+  opacity: 0.5;
+  margin: 1px;
 }
 
 .game__btn:nth-child(1) {
@@ -61,6 +73,23 @@
   border-radius: 10px 10px 90px 10px;
 }
 
+.game__btn_blue {
+  background: dodgerblue;
+}
+
+.game__btn_green {
+  background: #BEDE15;
+}
+
+.game__btn_yellow {
+  background: #FEEF33;
+}
+
+.game__btn_red {
+  background: #FF5643;
+}
+
 .btn_act {
-  background: green;
+  border: 2px solid grey;
+  opacity: 1;
 }
