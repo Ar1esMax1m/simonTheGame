@@ -59,7 +59,8 @@
       var startGame = [];
       var j = 1; //first lvl
       var indexStartGame = 0;
-
+      var difficulty;
+      var speed;
       var indexCheckGame = 0;
       var clockCheckGame = 1;
 
@@ -73,14 +74,21 @@
         },
         methods: {
           startGame: function (event) {
+            difficulty = this.picked;
+            document
+              .querySelector(".difficulty")
+              .classList.add("difficulty_off");
+            document
+              .querySelector(".game__start")
+              .classList.add("difficulty_off");
             indexStartGame = 0;
             clockCheckGame = 1;
             indexCheckGame = 0;
+
             let btns = document.querySelectorAll(".game__btn");
-            let speed;
-            if (this.picked === "400") {
-              speed = 300;
-            } else if (this.picked === "1500" || this.picked === "1000") {
+            if (difficulty === "400") {
+              speed = 200;
+            } else if (difficulty === "1500" || difficulty === "1000") {
               speed = 400;
             }
             //document.querySelector('.difficulty').className.add('difficulty_off');
@@ -93,6 +101,9 @@
                 clearInterval(intervalId);
               } else {
                 this.currentLightBtn = startGame[indexStartGame];
+                setInterval(() => {
+                  this.currentLightBtn = "";
+                }, difficulty);
                 let audio = document.createElement("audio");
                 audio.className = "sound";
                 audio.innerHTML = `<source src="sounds/${startGame[indexStartGame]}.mp3" type="audio/mpeg" />`;
@@ -105,10 +116,13 @@
                 }, speed);
                 indexStartGame++;
               }
-            }, this.picked);
+            }, difficulty);
           },
           checkBtn: function (x) {
             this.currentLightBtn = x;
+            setInterval(() => {
+              this.currentLightBtn = "";
+            }, difficulty);
             let audio = document.createElement("audio");
             audio.className = "sound";
             audio.innerHTML = `<source src="sounds/${x}.mp3" type="audio/mpeg" />`;
@@ -116,7 +130,7 @@
             document.querySelector(".sound").setAttribute("autoplay", "true");
             setTimeout(() => {
               document.querySelector(".sound").remove(audio);
-            }, 400);
+            }, speed);
 
             if (x != startGame[indexCheckGame]) {
               alert("You lose!");
@@ -124,9 +138,14 @@
               this.round = 1;
               startGame = [];
               j = 1;
+              document
+                .querySelector(".difficulty")
+                .classList.remove("difficulty_off");
+              document
+                .querySelector(".game__start")
+                .classList.remove("difficulty_off");
             } else {
               if (clockCheckGame == startGame.length) {
-                //this.currentLightBtn = "";
                 this.round += 1;
                 startGame = [];
                 j++;
