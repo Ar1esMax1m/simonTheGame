@@ -102,7 +102,7 @@
                 this.currentLightBtn = startGame[indexStartGame];
                 setInterval(() => {
                   this.currentLightBtn = "";
-                }, difficulty);
+                }, difficulty-10);
                 let audio = document.createElement("audio");
                 audio.className = "sound";
                 audio.innerHTML = `<source src="sounds/${startGame[indexStartGame]}.mp3" type="audio/mpeg" />`;
